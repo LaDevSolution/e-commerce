@@ -25,6 +25,7 @@
         "symfony/http-client": "7.0.*",
         "symfony/intl": "7.0.*",
         "symfony/mailer": "7.0.*",
+        "symfony/mailjet-mailer": "7.0.*",
         "symfony/mime": "7.0.*",
         "symfony/monolog-bundle": "^3.0",
         "symfony/notifier": "7.0.*",
@@ -41,7 +42,10 @@
         "symfony/ux-turbo": "^2.16",
         "symfony/validator": "7.0.*",
         "symfony/web-link": "7.0.*",
+        "symfony/webpack-encore-bundle": "^2.1",
         "symfony/yaml": "7.0.*",
+        "symfonycasts/reset-password-bundle": "^1.21",
+        "symfonycasts/verify-email-bundle": "^1.17",
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/twig": "^2.12|^3.0"
     },
