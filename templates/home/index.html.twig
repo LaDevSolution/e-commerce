@@ -1,20 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block img %}<img id="header-image" src="{{asset('images/businessman.jpg')}}" alt="image affaire"/>{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/xampp/htdocs/e-commerce/src/Controller/HomeController.php</code></li>
-        <li>Your template at <code>C:/xampp/htdocs/e-commerce/templates/home/index.html.twig</code></li>
-    </ul>
+{% for message in app.flashes('cancel') %}
+  <div class="alert alert-success">
+    {{ message }}
+  </div>
+{% endfor %}
+<div class="container text-center">
+  <section class="row">
+    <div class="col">
+      <h1 style="border-radius: 20px; padding: 20px; background-color: rgba(255, 255, 255, 0.1);font-family: 'Dancing Script', cursive; font-family: 'Lilita One', sans-serif; color: #0766AD">Bonjour !</h1>
+      <br/>
+      <p>Vous recherchez un télétravail ? 
+        Vous désirez être indépendant et travailler de où vous voulez et quand vous voulez ?
+        Alors vous êtes au bon endroit. {{ company }} a l'immense plaisir de vous présenter la "{{ description }}" 
+        qui vous permettra de devenir développeur de sites web et d'applications mobiles. 
+        La seule chose dont vous aurez besoin est d'un ordinateur et d'une connection à internet. 
+      </p>
+    </div>
+    <div class="col">
+      <div class="text-center">
+        <img class="home_img" src="{{ asset('uploads/products/formation-65577fc99571c164680740.png')}}" alt="image avec les symboles des langages du web" style="border-radius: 50%"/>
+        <br>
+        <br>
+        <a class="btn btn-success" href="{{ path('app_buy')}}" role="button">Achetez la "{{ description }}"</a>
+      </div>
+    </div>
+  </section>
+    <br>
+    <br>
+    <br>
+    <br>
+  <section class="row">
+    <div class="col">
+      <div class="text-center">
+        <img class="home_img" src="{{ asset('uploads/products/soutient-65577ffa2312e451068176.jpg')}}" alt="image représentant un cours en live et en ligne" style="border-radius: 50%;"/>
+        <br>
+        <br>
+        <a class="btn btn-success" href="{{ path('app_buy')}}" role="button">Achetez la formation
+            {#"{{ soutient.name }}" #}
+        </a>
+      </div>
+      <br>
+      <br>
+      <br>
+    </div>
+    <div class="col">
+      <h2>En quoi consiste le métier de développeur ?</h2>
+      <br/>
+      <p>Cela consiste à créer des sites web et des applications mobile pour vous même ou pour des clients. 
+      Pour cela, le développeur doit maitriser les différents langages de code ainsi que les différents outils informatiques nécessaires à la réalisation d'un site web.
+      Le développeur doit aussi connaitre la réglementation concernant les données personnelles des utilisateurs ainsi que les lois concernant la réalisation de site web. 
+      </p>
+      <br/>
+      <p>Pour vous accompagner au mieux durant votre formation, {{ company }} vous propose des cours en live et en ligne afin de répondre à toutes vos questions et vous aider à mieux appréhender les principes de base de la programmation.</p>
+    </div>
+  </section>
+    <br>
+    <br>
+    <br>
+    <div class="text-center">
+      <p>Pour plus de renseignements rdv sur la page "<a href="{{ path('app_contact')}}">Contact</a>"</p>
+    </div>
 </div>
 {% endblock %}

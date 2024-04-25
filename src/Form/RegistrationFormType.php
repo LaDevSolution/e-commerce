@@ -5,7 +5,9 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -17,8 +19,49 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('name', TextType::class, [
+                'label' => 'Nom',
+                'mapped' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Champ requis.',
+                    ]),
+                    new Length([
+                        'min' => 2,
+                        'minMessage' => 'Votre nom semble incohérent',
+                        'max' => 4096,
+                    ]),
+                ],
+            ])
+            ->add('firstname', TextType::class, [
+                'label' => 'Prénom',
+                'mapped' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Champ requis.',
+                    ]),
+                    new Length([
+                        'min' => 2,
+                        'minMessage' => 'Votre prénom semble incohérent',
+                        'max' => 4096,
+                    ]),
+                ],
+            ])
+            ->add('email', EmailType::class, [
+                'mapped' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Champ requis.',
+                    ]),
+                    new Length([
+                        'min' => 5,
+                        'minMessage' => 'Votre adresse mail doit contenir {{ limit }} caractères minimum',
+                        'max' => 4096,
+                    ]),
+                ],
+            ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'Accepter les conditions d\'utilisation de vos données personnelles',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
@@ -29,8 +72,12 @@ class RegistrationFormType extends AbstractType
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'label' => 'Mot de passe',
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => [
+                    'autocomplete' => 'new-password', 
+                    'class' => 'inputPassword'
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Champ requis.',
@@ -38,7 +85,6 @@ class RegistrationFormType extends AbstractType
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Votre mot de passe doit contenir {{ limit }} caractères minimum',
-                        // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
                 ],

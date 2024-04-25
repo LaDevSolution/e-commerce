@@ -10,9 +10,6 @@
 {% for flash_success in app.flashes('success') %}
     <div class="alert alert-success" role="alert">{{ flash_success }}</div>
 {% endfor %}
-<section>
-
-</section>
 <form method="post" class="w-75 w-xl-50">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -51,6 +48,10 @@
         Se connecter
     </button>
     <br><br>
+    <div class="mb-3 text">Vous avez oublié votre mot de passe ? 
+        <a href="{{ path('app_forgot_password_request')}}">Cliquez ici</a>
+    </div>
+    <br>
     <div class="mb-3 text">Pas de compte ? Inscrivez-vous en cliquant<a href="{{ path('app_register')}}">ici</a></div>
 </form>
 {% endblock %}

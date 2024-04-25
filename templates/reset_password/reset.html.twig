@@ -2,11 +2,22 @@
 
 {% block title %}Renouveller le mot de passe{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
 {% block body %}
     <h1>Changez votre mot de passe</h1>
 
     {{ form_start(resetForm) }}
         {{ form_row(resetForm.plainPassword) }}
+        <div class="eye">
+            <span class="material-symbols-outlined eye-off mx-2">visibility_off</span>
+            <span class="material-symbols-outlined eye-on mx-2">visibility</span>
+            <span class="displayEye">Afficher le mot de passe</span>
+            <span class="noDisplay">Cacher le mot de passe</span>
+        </div>
         <button class="btn btn-primary">Modifier le mot de passe</button>
     {{ form_end(resetForm) }}
 {% endblock %}

@@ -37,6 +37,11 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            $user->setName($form->get('name')->getData());
+            $user->setFirstname($form->get('firstname')->getData());
+            $user->setEmail($form->get('email')->getData());
+            $user->setAgreeTerms($form->get('agreeTerms')->getData());
+            $user->setRoles(['ROLE_USER']);
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -52,7 +57,7 @@ class RegistrationController extends AbstractController
 
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_verify');
         }
 
         return $this->render('registration/register.html.twig', [
@@ -71,11 +76,17 @@ class RegistrationController extends AbstractController
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_my_space');
         }
 
         $this->addFlash('success', 'Votre adresse mail a été vérifiée.');
 
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('app_my_space');
+    }
+
+    #[Route('/verify', name:'app_verify')]
+    public function verify(): Response 
+    {
+        return $this->render('security/verify.html.twig');
     }
 }

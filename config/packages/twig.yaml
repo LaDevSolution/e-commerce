@@ -1,6 +1,24 @@
 twig:
     file_name_pattern: '*.twig'
-
+    default_path: '%kernel.project_dir%/templates'
+    form_themes: ['bootstrap_5_layout.html.twig']
+    globals: 
+        description: 'formation'
+        name: 'La DevSolution'
+        address: 'Avenue du rêve, 40180 Une Boutique'
+        # email: '%env(ADMIN_EMAIL)%'
+        email: 'ladevsolution@gmail.com'
+        # company: '%env(ADMIN_COMPANY)%'
+        company: 'La Dev Solution'
+        telephone: '06.12.34.56.789'
+        siret: '00000000000000'
+        ape: '6201Z'
+        tva: 'non applicable ART.293B du CGI'
+        price: '500'
+        currency: 'euros'
+        quantity: '1'
+        host: 'hebergeurname'
+        domain: 'ladevsolution.fr'
 when@test:
     twig:
         strict_variables: true

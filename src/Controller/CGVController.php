@@ -8,11 +8,14 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class CGVController extends AbstractController
 {
-    #[Route('/c/g/v', name: 'app_c_g_v')]
-    public function index(): Response
+    #[Route('/cgv', name: 'app_cgv')]
+    public function index(ProductRepository $productRepository): Response
     {
+        $formation = $productRepository->find(1);
+        $soutient = $productRepository->find(2);
         return $this->render('cgv/index.html.twig', [
-            'controller_name' => 'CGVController',
+            'formation'=> $formation,
+            'soutient' => $soutient
         ]);
     }
 }
