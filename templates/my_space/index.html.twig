@@ -12,8 +12,6 @@
     {% endfor %}
 
     <h1>Bonjour {{ firstname }} !</h1>
-    <br>
-    
     {% if verified is same as true %}
         <div class="text">Votre adresse mail a été vérifiée ✅</div>
     {% else %}
@@ -22,14 +20,24 @@
 
     <br>
     <h2>Vos données personnelles : </h2>
-    <br><br>
     <p>{{ name }} {{ firstname }}</p>
     <p>{{ email }}</p>
-    {% if is_granted('ROLE_CUSTOMER') %}
-        <h2>Votre {{description }}</h2>
-        <br>
+    {% if is_granted('ROLE_CUSTOMER') or is_granted('ROLE_CUSTOMER_FORMATION') %}
+        <h2>Votre facture</h2>
+        <ol>
+            {% for invoice in invoices %}
+                <li class="text">{{ invoice }}</li>
+            {% endfor %}
+        </ol>
+    {% endif %}
+    {% if is_granted('ROLE_CUSTOMER_FORMATION') or is_granted('ROLE_ADMIN') %}
+    <br>
+        <h2>Votre formation</h2>
         <div class="text-center">
-            <a class="btn btn-success" href="{{asset('formationdev.zip')}}" download="formation.zip">Télécharger la {{ description }}</a>
+            <a class="btn btn-success" href="{{asset('formationdev.zip')}}" download="formation.zip">Télécharger la formation</a>
         </div>
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_product_index') }}">Gérer les produits</a>
     {% endif %}
 {% endblock %}

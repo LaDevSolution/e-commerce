@@ -1,9 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Home{% endblock %}
-
 {% block img %}<img id="header-image" src="{{asset('images/businessman.jpg')}}" alt="image affaire"/>{% endblock %}
-
 {% block body %}
 {% for message in app.flashes('cancel') %}
   <div class="alert alert-success">
@@ -17,7 +15,7 @@
       <br/>
       <p>Vous recherchez un télétravail ? 
         Vous désirez être indépendant et travailler de où vous voulez et quand vous voulez ?
-        Alors vous êtes au bon endroit. {{ company }} a l'immense plaisir de vous présenter la "{{ description }}" 
+        Alors vous êtes au bon endroit. {{ company }} a l'immense plaisir de vous présenter la "{{ formation.name }}" 
         qui vous permettra de devenir développeur de sites web et d'applications mobiles. 
         La seule chose dont vous aurez besoin est d'un ordinateur et d'une connection à internet. 
       </p>
@@ -27,7 +25,7 @@
         <img class="home_img" src="{{ asset('uploads/products/formation-65577fc99571c164680740.png')}}" alt="image avec les symboles des langages du web" style="border-radius: 50%"/>
         <br>
         <br>
-        <a class="btn btn-success" href="{{ path('app_buy')}}" role="button">Achetez la "{{ description }}"</a>
+        <a class="btn btn-success" href="{{ path('app_shop')}}" role="button">Achetez la "{{ formation.name }}"</a>
       </div>
     </div>
   </section>
@@ -41,9 +39,7 @@
         <img class="home_img" src="{{ asset('uploads/products/soutient-65577ffa2312e451068176.jpg')}}" alt="image représentant un cours en live et en ligne" style="border-radius: 50%;"/>
         <br>
         <br>
-        <a class="btn btn-success" href="{{ path('app_buy')}}" role="button">Achetez la formation
-            {#"{{ soutient.name }}" #}
-        </a>
+        <a class="btn btn-success" href="{{ path('app_shop')}}" role="button">Achetez "{{ soutient.name }}"</a>
       </div>
       <br>
       <br>
